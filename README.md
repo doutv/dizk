@@ -16,12 +16,23 @@ The library is developed as part of a paper called *"[DIZK: A Distributed Zero K
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Directory structure](#directory-structure)
 - [Overview](#overview)
 - [Build guide](#build-guide)
+  - [Why Java?](#why-java)
+  - [Installation](#installation)
+  - [Docker](#docker)
+  - [Testing](#testing)
 - [Profiler](#profiler)
+  - [Docker-Compose](#docker-compose)
+  - [Spark EC2](#spark-ec2)
+  - [Profiling scripts](#profiling-scripts)
 - [Benchmarks](#benchmarks)
+  - [libsnark *vs* DIZK](#libsnark-vs-dizk)
+  - [Distributed zkSNARK](#distributed-zksnark)
 - [References](#references)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 ## Directory structure
@@ -122,21 +133,22 @@ This library comes with unit tests for each of the provided modules. Run the tes
 mvn test
 ``` 
 
-### Build and Run Docker Container
-
-```
-cd your_dizk_project_directory
-
-docker build -t dizk-container .
-docker run --rm -it dizk-container bash
-```
-
-This will put you inside a bash shell with a preinstalled and compiled project environment.
-
 ## Profiler
+The profiler benchmarks the performance of serial and distributed zero-knowledge proof systems, as well as its underlying primitives.
 
-Using Amazon EC2, the profiler benchmarks the performance of serial and distributed zero-knowledge proof systems, as well as its underlying primitives.
-The profiler uses `spark-ec2` to manage the cluster compute environment and a set of provided scripts for launch, profiling, and shutdown.
+
+### Docker-Compose
+Run profiler on one local machine using docker-compose.
+
+```bash
+# Skip tests
+mvn package -DskipTests
+docker build -t cluster-apache-spark:2.1.0 -f sparkDockerfile .
+docker-compose up -d
+docker-compose exec -it spark-master bash
+bash /opt/scripts/docker_distributed.sh
+bash /opt/scripts/docker_serial.sh
+```
 
 ### Spark EC2
 
