@@ -4,7 +4,7 @@ This project is currently supporting input of *Rank 1 Constraint Systems* (soon 
 
 ## Rank One Constraint System
 
-### Overview 
+### Overview
 
 - Plain text R1CS defined by 4 files (3 for matrices `a, b` and `c` and 1 for problem size). Each row of matrix files has three space separated integers `c r v` denoting that the non-zero value `v` appears at row `r` and column `c`. Each matrix file **must end with a blank line**!
 - JSON R1CS defined as having *constraints* key referring to a list whose rth entry is a triple of key-value pairs denoting the column-values of the rth row of matrices `a, b and c` respectively. See below for examples.
@@ -73,9 +73,6 @@ In the example above, valid witness information would be
 
 to denote the vector `z^t = [1, 0, 1, 1, 1]`. Note that 1 is assumed to be the first entry of the data which is taken from the first value os public
 
-At this moment, in our profiling we have temporarily reversed the order of information (based on libsnark output which appears to reverse the role of public and private information on the level of the matrix indexing. 
-This means that the above example would be interpreted as `z^t = [1, 1, 1, 0, 1] = [1 | private | public]`
-
 ### JSON
 
 The JSON file format of a R1CS (with inputs) consists of 4 keys: `header`, `primary_inputs, aux_input` and `constraints` each having list values as demonstrated in the following example:
@@ -96,21 +93,6 @@ The JSON file format of a R1CS (with inputs) consists of 4 keys: `header`, `prim
 The header is used to describe the number of primary and auxiliary inputs respectively (in the event that primary and auxiliary inputs are not supplied.)
 
 where the constraint at index `r` denotes the non-zero entries of the r-th row of matrices `a, b` and `c` respectively. 
-
-- Constraint values can be either of type String or Integer.
-
-In the event that we are only interested in the constraints (without the inputs), this requirements reduces to
-
-```python
-{
-  "header": [2, 3],
-  "constraints": [
-    [{"1": 1, "2": 1}, {"0": 1}, {"2": 1}],
-    [{"2": 1}, {"3": 1}, {"3": 1}],
-    [{"1": 1, "2": 1, "3": 1}, {"1": 1, "2": 1, "3": 1}, {"4": 1}]
-  ]
-}
-``` 
 
 # Trusted Setup
 

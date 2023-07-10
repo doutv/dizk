@@ -74,6 +74,16 @@ public class DistributedFromJSONTest implements Serializable {
         assertTrue(r1cs.isSatisfied(witness._1(), witness._2()));
     }
 
+    @Test
+    public void distributedR1CSFromJSONTest3() {
+        String filePath = "src/test/data/json/zkmnist.json";
+        converter = new JSONToDistributedR1CS<>(filePath, fieldFactory);
 
+        r1cs = converter.loadR1CS(config);
+        assertTrue(r1cs.isValid());
+
+        witness = converter.loadWitness(config);
+        assertTrue(r1cs.isSatisfied(witness._1(), witness._2()));
+    }
 }
 

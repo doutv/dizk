@@ -131,6 +131,7 @@ docker run -it dizk-container bash
 This library comes with unit tests for each of the provided modules. Run the tests with:
 ```$xslt
 mvn test
+mvn -Dtest=DistributedFromJSONTest test
 ``` 
 
 ## Profiler

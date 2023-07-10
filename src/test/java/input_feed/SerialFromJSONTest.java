@@ -59,4 +59,30 @@ public class SerialFromJSONTest implements Serializable {
 
     }
 
+    @Test
+    public void demoR1CSFromJSONTest() {
+        String filePath = "src/test/data/json/demo.json";
+        converter = new JSONToSerialR1CS<>(filePath, fieldFactory);
+
+        r1cs = converter.loadR1CS();
+        assertTrue(r1cs.isValid());
+
+        witness = converter.loadWitness();
+        assertTrue(r1cs.isSatisfied(witness._1(), witness._2()));
+    }
+
+    /*
+    @Test
+    public void zkmnistR1CSFromJSONTest() {
+        String filePath = "src/test/data/json/zkmnist.json";
+        converter = new JSONToSerialR1CS<>(filePath, fieldFactory);
+
+        r1cs = converter.loadR1CS();
+        assertTrue(r1cs.isValid());
+
+        witness = converter.loadWitness();
+        assertTrue(r1cs.isSatisfied(witness._1(), witness._2()));
+
+    }
+    */
 }
