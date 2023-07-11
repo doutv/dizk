@@ -8,8 +8,8 @@ import algebra.curves.barreto_naehrig.bn254a.BN254aPairing;
 import algebra.curves.barreto_naehrig.bn254a.bn254a_parameters.BN254aG1Parameters;
 import algebra.curves.barreto_naehrig.bn254a.bn254a_parameters.BN254aG2Parameters;
 import configuration.Configuration;
-import input_feed.distributed.TextToDistributedR1CS;
-import input_feed.serial.TextToSerialR1CS;
+import input_feed.distributed.JSONToDistributedR1CS;
+import input_feed.serial.JSONToSerialR1CS;
 import org.apache.spark.api.java.JavaPairRDD;
 import relations.objects.Assignment;
 import relations.r1cs.R1CSRelation;
@@ -28,11 +28,10 @@ public class InputFeedProfiling {
         final BN254aG2 g2Factory = new BN254aG2Parameters().ONE();
         final BN254aPairing pairing = new BN254aPairing();
 
-        TextToDistributedR1CS<BN254aFr>
-                converter = new TextToDistributedR1CS<>(filePath, fieldFactory, true, true);
+        JSONToDistributedR1CS<BN254aFr>
+                converter = new JSONToDistributedR1CS<>(filePath, fieldFactory);
 
         config.setContext("Load R1CS");
-
         config.beginLog(config.context());
         config.beginRuntime("Load R1CS");
         R1CSRelationRDD<BN254aFr> r1cs = converter.loadR1CS(config);
@@ -103,9 +102,10 @@ public class InputFeedProfiling {
         final BN254aG1 g1Factory = new BN254aG1Parameters().ONE();
         final BN254aG2 g2Factory = new BN254aG2Parameters().ONE();
         final BN254aPairing pairing = new BN254aPairing();
+        
 
-        final TextToSerialR1CS<BN254aFr>
-                converter = new TextToSerialR1CS<>(filePath, fieldFactory, true);
+        final JSONToSerialR1CS<BN254aFr>
+                converter = new JSONToSerialR1CS<>(filePath, fieldFactory);
 
         config.setContext("Load R1CS");
 

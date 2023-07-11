@@ -9,6 +9,7 @@ services:
        - ./target:/opt/spark-apps
        - ./out:/tmp/spark-events/src/main/resources/logs/
        - ./src/main/java/profiler/scripts:/opt/scripts
+       - ./src/test/data/json:/opt/data
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master

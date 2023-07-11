@@ -1,9 +1,9 @@
 package input_feed.serial;
 
+import org.json.simple.parser.JSONParser;
 import algebra.fields.AbstractFieldElementExpanded;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import relations.objects.*;
 import relations.r1cs.R1CSRelation;
 import scala.Tuple2;

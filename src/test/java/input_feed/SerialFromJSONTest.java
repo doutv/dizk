@@ -71,7 +71,6 @@ public class SerialFromJSONTest implements Serializable {
         assertTrue(r1cs.isSatisfied(witness._1(), witness._2()));
     }
 
-    /*
     @Test
     public void zkmnistR1CSFromJSONTest() {
         String filePath = "src/test/data/json/zkmnist.json";
@@ -82,7 +81,5 @@ public class SerialFromJSONTest implements Serializable {
 
         witness = converter.loadWitness();
         assertTrue(r1cs.isSatisfied(witness._1(), witness._2()));
-
     }
-    */
 }
