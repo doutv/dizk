@@ -6,6 +6,9 @@
 </p>
 <h4 align="center">Java library for distributed zero knowledge proof systems</h4>
 
+Forked from https://github.com/gnosis/dizk, add docker-compose deployment and profiling scripts.
+
+
 ___DIZK___ (pronounced */'dizək/*) is a Java library for distributed zero knowledge proof systems. The library implements distributed polynomial evaluation/interpolation, computation of Lagrange polynomials, and multi-scalar multiplication. Using these scalable arithmetic subroutines, the library provides a distributed zkSNARK proof system that enables verifiable computations of up to billions of logical gates, far exceeding the scale of previous state-of-the-art solutions.
 
 The library is developed by [SCIPR Lab](http://www.scipr-lab.org/) and contributors (see [AUTHORS](AUTHORS) file) and is released under the MIT License (see [LICENSE](LICENSE) file).
