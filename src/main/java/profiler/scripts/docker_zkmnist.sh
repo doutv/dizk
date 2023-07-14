@@ -4,12 +4,11 @@ export APP_TYPE='distributed'
 export APP='input-feed'
 export FILE_PATH="/opt/data/zkmnist.json"
 export MEMORY=512M
-export MULTIPLIER=1
 
-for TOTAL_CORES in `seq 1 6`; do
-    export CORES=1
+for TOTAL_CORES in `seq 2 2 10`; do
+    export CORES=2
     export NUM_EXECUTORS=$((TOTAL_CORES / CORES))
-    export NUM_PARTITIONS=$((TOTAL_CORES * MULTIPLIER))
+    export NUM_PARTITIONS=${NUM_EXECUTORS}
 
     /opt/spark/bin/spark-submit --master spark://spark-master:7077 \
       --conf spark.driver.memory=$MEMORY \
