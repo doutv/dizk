@@ -30,6 +30,7 @@ The library is developed as part of a paper called *"[DIZK: A Distributed Zero K
 - [Profiler](#profiler)
   - [Docker-Compose](#docker-compose)
   - [Spark EC2](#spark-ec2)
+  - [Profiling Output Format](#profiling-output-format)
   - [Profiling scripts](#profiling-scripts)
 - [Benchmarks](#benchmarks)
   - [libsnark *vs* DIZK](#libsnark-vs-dizk)
@@ -168,6 +169,27 @@ pwd
 ```
 
 Remember where the directory for `spark-ec2` is located, as this will need to be provided as an environment variable for the scripts as part of the next step.
+
+### Profiling Output Format
+```
+# All times are in seconds
+# The lasest output will be appended to the last row of the csv
+
+Load R1CS-1exec-1cpu-1mem-1partitions.csv
+Load R1CS time
+
+Load Witness-1exec-1cpu-1mem-1partitions.csv
+Load Witness time
+
+Setup-1exec-1cpu-1mem-1partitions.csv
+Constraint Size, Total Setup time, Generating R1CS proving key, Computing gammaABC for R1CS verification key
+
+Prover-1exec-1cpu-1mem-1partitions.csv
+Constraint Size, Total Prover time, ?
+
+Verifier-1exec-1cpu-1mem-1partitions.csv
+Constraint Size, Total Verifier time, pass(1) or fail(0)
+```
 
 ### Profiling scripts
 
